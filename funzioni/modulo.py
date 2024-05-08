@@ -3,10 +3,10 @@ def menu(TERMINATORE):
     La funzione menu stampa le voci del menu e ritorna la scelta dell'utente, TERMINATORE per uscire.
    
     Parametri (TERMINATORE):
-        TERMINATORE: Il terminatore serve per uscire dal programma
+        TERMINATORE: Il terminatore serve per uscire dal programma.
    
     Ritorna (scelta):
-        scelta: è l'input dato dall'utente
+        scelta: è l'input dato dall'utente.
    
     """
     msg1 = "Inserire 1 per l'elenco dei docenti di una data classe."
@@ -29,9 +29,9 @@ def leggidocenti():
    
     Ritorna (lista_docenti,lista_orari):
    
-        lista_docenti: contiene la lista di tutti i nomi dei docenti nell'istituto
+        lista_docenti: contiene la lista di tutti i nomi dei docenti nell'istituto.
        
-        lista_orari: contiene la lista degli orari di ogni professore
+        lista_orari: contiene la lista degli orari di ogni professore.
 
     """
     filecsv = open("OrarioTabellaGlobale.csv","r")
@@ -52,15 +52,15 @@ def leggidocenti():
 
 def f1(classe_input, orari, docenti):
     """
-    Crea un file dove inserisce i nomi di tutti i docenti della data classe
+    Crea un file dove inserisce i nomi di tutti i docenti della data classe.
    
     Parametri (classe_input, orari, docenti):
    
-        classe_input: La classe data dall'utente che deve cercare
+        classe_input: La classe data dall'utente che deve cercare.
        
-        docenti: lista di tutti i nomi dei docenti nell'istituto
-       
-        orari : lista di tutti gli orari dei docenti nell'istituto
+        orari: lista di tutti gli orari dei docenti nell'istituto.
+        
+        docenti: lista di tutti i nomi dei docenti nell'istituto.
    
     Ritorna ():
    
@@ -88,15 +88,15 @@ def f1(classe_input, orari, docenti):
 
 def f2(docenti, orari, docente_input):
     """
-    Cerca l'rario di un determinato docente e stampa le ore totali di essso
+    Cerca l'orario di un determinato docente e stampa le ore totali di esso.
    
     Parametri (docenti, orari, docente):
    
-        docenti: lista di tutti i nomi dei docenti nell'istituto
+        docenti: lista di tutti i nomi dei docenti nell'istituto.
        
-        orari : lista di tutti gli orari dei docenti nell'istituto
+        orari: lista di tutti gli orari dei docenti nell'istituto.
        
-        docente : variabile che contiene il cognome e nome del docente da cercare
+        docente_input: variabile che contiene il cognome e nome del docente da cercare.
 
     Ritorna ():
 
@@ -121,51 +121,51 @@ def f2(docenti, orari, docente_input):
     print("Controlla il file", nomefile)
     return
 
-def f3(docenti, orari, docente):
+def f3(docenti, orari, docente_input):
     """
-    Cerca il numero di ore D di un determinato docente dato dall'utente
+    Cerca il numero di ore D di un determinato docente dato dall'utente.
    
-    parametri (docenti, orari, docente):
+    parametri (docenti, orari, docente_input):
        
-        docenti: lista di tutti i nomi dei docenti nell'istituto
+        docenti: lista di tutti i nomi dei docenti nell'istituto.
        
-        orari : lista di tutti gli orari dei docenti nell'istituto
+        orari : lista di tutti gli orari dei docenti nell'istituto.
        
-        docente : variabile che contiene il cognome e nome del docente da cercare
+        docente_input: variabile che contiene il cognome e nome del docente da cercare.
        
     Ritorna ():
    
     """
-    nomefile = "disposizione " + docente.lower() +".txt"
+    nomefile = "disposizione " + docente_input.lower() +".txt"
     file3 = open(nomefile,"a")
     file3.close()
     file3 = open(nomefile,"w")
-    file3.write("Ore a disposizioni di "+ docente + ":\n\n")
+    file3.write("Ore a disposizioni di "+ docente_input + ":\n\n")
     c = 0
     dizionario = {}
     for i in range(len(docenti)):
         dizionario[docenti[i]] = orari[i]
-    for ora in dizionario[docente]:
+    for ora in dizionario[docente_input]:
         if ora == " D ":
             c += 1
-    file3.write(docente + " ha " + str(c) + " ore in cui è a disposizione.")
+    file3.write(docente_input + " ha " + str(c) + " ore in cui è a disposizione.")
     file3.close()
     print("Controlla il file", nomefile)
     return
 
 def f4(ora_input, giorno_input , orari, docenti):
     """
-    Cerca il docente di un determinato giorno a una determinata ora date dall'utente
+    Cerca il docente di un determinato giorno a una determinata ora date dall'utente.
    
     Parametri (ora_input, giorno_input , orari, docenti):
        
-        ora_input: variabile che contiene l'ora della giornata da cercare
+        ora_input: variabile che contiene l'ora della giornata da cercare.
        
-        giorno_input: variabile che contiene il giorno dato dall'utente
+        giorno_input: variabile che contiene il giorno dato dall'utente.
      
-        docenti: lista di tutti i nomi dei docenti nell'istituto
-       
-        orari : lista di tutti gli orari dei docenti nell'istituto
+        orari : lista di tutti gli orari dei docenti nell'istituto.
+        
+        docenti: lista di tutti i nomi dei docenti nell'istituto.
    
     Ritorna ():
 
