@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html lang="it" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>funzioni.modulo &#8212; Progetto Orario 1.01 documentazione</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=12dfc556" />
+    <script src="../../_static/documentation_options.js?v=189b2559"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/translations.js?v=0173e136"></script>
+    <link rel="index" title="Indice" href="../../genindex.html" />
+    <link rel="search" title="Cerca" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Codice sorgente per funzioni.modulo</h1><div class="highlight"><pre>
+<div class="viewcode-block" id="menu">
+<a class="viewcode-back" href="../../funzioni.html#funzioni.modulo.menu">[documenti]</a>
+<span></span><span class="k">def</span> <span class="nf">menu</span><span class="p">(</span><span class="n">TERMINATORE</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    La funzione menu stampa le voci del menu e ritorna la scelta dell&#39;utente, TERMINATORE per uscire.</span>
+<span class="sd">   </span>
+<span class="sd">    Parametri (TERMINATORE):</span>
+<span class="sd">        TERMINATORE: Il terminatore serve per uscire dal programma.</span>
+<span class="sd">   </span>
+<span class="sd">    Ritorna (scelta):</span>
+<span class="sd">        scelta: è l&#39;input dato dall&#39;utente.</span>
+<span class="sd">   </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">msg1</span> <span class="o">=</span> <span class="s2">&quot;Inserire 1 per l&#39;elenco dei docenti di una data classe.&quot;</span>
+    <span class="n">msg2</span> <span class="o">=</span> <span class="s2">&quot;Inserire 2 per l&#39;orario di un determinato docente e il numero totale delle ore del docente.&quot;</span>
+    <span class="n">msg3</span> <span class="o">=</span> <span class="s2">&quot;Inserire 3 per il numero di ore a disposizione (&#39;D&#39;) di un docente&quot;</span>
+    <span class="n">msg4</span> <span class="o">=</span> <span class="s2">&quot;Inserire 4 per elenco dei docenti che hanno lezione (classe o disposizione) una determinata ora di un determinato giorno della settimana (esempio prima ora del lunedì) e numero totale dei docenti&quot;</span>
+    <span class="n">msguscita</span> <span class="o">=</span> <span class="s2">&quot;Inserire &#39;&quot;</span><span class="o">+</span><span class="n">TERMINATORE</span><span class="o">+</span><span class="s2">&quot;&#39; per uscire.&quot;</span>
+    <span class="n">tupla_messaggi</span> <span class="o">=</span> <span class="p">(</span><span class="n">msg1</span><span class="p">,</span><span class="n">msg2</span><span class="p">,</span><span class="n">msg3</span><span class="p">,</span><span class="n">msg4</span><span class="p">,</span><span class="n">msguscita</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">messaggio</span> <span class="ow">in</span> <span class="n">tupla_messaggi</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">messaggio</span><span class="p">)</span>
+    <span class="n">scelta</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Cosa vuoi fare? &quot;</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">scelta</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="leggidocenti">
+<a class="viewcode-back" href="../../funzioni.html#funzioni.modulo.leggidocenti">[documenti]</a>
+<span class="k">def</span> <span class="nf">leggidocenti</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Legge il file csv e genera 2 liste, la prima contiene la lista dei docenti nell&#39;istituto, la seconda, contiene la lista degli orari dei docenti.</span>
+<span class="sd">    Quindi il primo professore della prima lista avrà il primo orario della seconda lista.</span>
+<span class="sd">   </span>
+<span class="sd">    Parametri ():</span>
+<span class="sd">   </span>
+<span class="sd">    Ritorna (lista_docenti,lista_orari):</span>
+<span class="sd">   </span>
+<span class="sd">        lista_docenti: contiene la lista di tutti i nomi dei docenti nell&#39;istituto.</span>
+<span class="sd">       </span>
+<span class="sd">        lista_orari: contiene la lista degli orari di ogni professore.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">filecsv</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;OrarioTabellaGlobale.csv&quot;</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+    <span class="n">riga</span> <span class="o">=</span> <span class="n">filecsv</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+    <span class="n">lista_docenti</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">lista_orari</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">while</span> <span class="n">riga</span> <span class="o">!=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">]:</span>
+        <span class="n">docente</span> <span class="o">=</span> <span class="n">riga</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">orario</span> <span class="o">=</span> <span class="n">riga</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="n">lista_docenti</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">docente</span><span class="p">)</span>
+        <span class="n">lista_orari</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">orario</span><span class="p">)</span>
+        <span class="n">riga</span> <span class="o">=</span> <span class="n">filecsv</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+
+    <span class="n">lista_docenti</span> <span class="o">=</span> <span class="n">lista_docenti</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+    <span class="n">lista_orari</span> <span class="o">=</span> <span class="n">lista_orari</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+    <span class="n">filecsv</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">lista_docenti</span><span class="p">,</span><span class="n">lista_orari</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="f1">
+<a class="viewcode-back" href="../../funzioni.html#funzioni.modulo.f1">[documenti]</a>
+<span class="k">def</span> <span class="nf">f1</span><span class="p">(</span><span class="n">classe_input</span><span class="p">,</span> <span class="n">orari</span><span class="p">,</span> <span class="n">docenti</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Crea un file dove inserisce i nomi di tutti i docenti della data classe.</span>
+<span class="sd">   </span>
+<span class="sd">    Parametri (classe_input, orari, docenti):</span>
+<span class="sd">   </span>
+<span class="sd">        classe_input: La classe data dall&#39;utente che deve cercare.</span>
+<span class="sd">       </span>
+<span class="sd">        orari: lista di tutti gli orari dei docenti nell&#39;istituto.</span>
+<span class="sd">        </span>
+<span class="sd">        docenti: lista di tutti i nomi dei docenti nell&#39;istituto.</span>
+<span class="sd">   </span>
+<span class="sd">    Ritorna ():</span>
+<span class="sd">   </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nomefile</span> <span class="o">=</span> <span class="s2">&quot;elencodocenti.txt&quot;</span>
+    <span class="n">file1</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">nomefile</span><span class="p">,</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+    <span class="n">file1</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">file1</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">nomefile</span><span class="p">,</span><span class="s2">&quot;w&quot;</span><span class="p">)</span>
+    <span class="n">file1</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Elenco docenti nella classe &quot;</span> <span class="o">+</span> <span class="n">classe_input</span> <span class="o">+</span> <span class="s2">&quot;:</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">dizionario</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">lista_docenti</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">docenti</span><span class="p">)):</span>
+        <span class="n">dizionario</span><span class="p">[</span><span class="n">docenti</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">orari</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">docente</span> <span class="ow">in</span> <span class="n">dizionario</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">ora</span> <span class="ow">in</span> <span class="n">dizionario</span><span class="p">[</span><span class="n">docente</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">ora</span> <span class="o">==</span> <span class="n">classe_input</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">docente</span> <span class="ow">in</span> <span class="n">lista_docenti</span><span class="p">:</span>
+                    <span class="k">pass</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">file1</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">docente</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="n">lista_docenti</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">docente</span><span class="p">)</span>
+    <span class="n">file1</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Controlla il file&quot;</span><span class="p">,</span> <span class="n">nomefile</span><span class="p">)</span>
+    <span class="k">return</span></div>
+
+
+<div class="viewcode-block" id="f2">
+<a class="viewcode-back" href="../../funzioni.html#funzioni.modulo.f2">[documenti]</a>
+<span class="k">def</span> <span class="nf">f2</span><span class="p">(</span><span class="n">docenti</span><span class="p">,</span> <span class="n">orari</span><span class="p">,</span> <span class="n">docente_input</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Cerca l&#39;orario di un determinato docente e stampa le ore totali di esso.</span>
+<span class="sd">   </span>
+<span class="sd">    Parametri (docenti, orari, docente):</span>
+<span class="sd">   </span>
+<span class="sd">        docenti: lista di tutti i nomi dei docenti nell&#39;istituto.</span>
+<span class="sd">       </span>
+<span class="sd">        orari: lista di tutti gli orari dei docenti nell&#39;istituto.</span>
+<span class="sd">       </span>
+<span class="sd">        docente_input: variabile che contiene il cognome e nome del docente da cercare.</span>
+
+<span class="sd">    Ritorna ():</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dizionario</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">nomefile</span> <span class="o">=</span> <span class="s2">&quot;orario &quot;</span> <span class="o">+</span> <span class="n">docente_input</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">+</span><span class="s2">&quot;.txt&quot;</span>
+    <span class="n">file2</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">nomefile</span><span class="p">,</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+    <span class="n">file2</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">file2</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">nomefile</span><span class="p">,</span><span class="s2">&quot;w&quot;</span><span class="p">)</span>
+    <span class="n">file2</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Orario di &quot;</span><span class="o">+</span> <span class="n">docente_input</span> <span class="o">+</span> <span class="s2">&quot;:</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">docenti</span><span class="p">)):</span>
+        <span class="n">dizionario</span><span class="p">[</span><span class="n">docenti</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">orari</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">file2</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Lu ,Lu ,Lu ,Lu ,Lu ,Lu ,Lu ,Lu ,Ma ,Ma ,Ma ,Ma ,Ma ,Ma ,Ma ,Ma ,Me ,Me ,Me ,Me ,Me ,Me ,Me ,Me ,Gi ,Gi ,Gi ,Gi ,Gi ,Gi ,Gi ,Gi ,Ve ,Ve ,Ve ,Ve ,Ve ,Ve ,Ve ,Ve</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">ora</span> <span class="ow">in</span> <span class="n">dizionario</span><span class="p">[</span><span class="n">docente_input</span><span class="p">]:</span>
+        <span class="n">file2</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ora</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ora</span> <span class="o">!=</span> <span class="s2">&quot;   &quot;</span><span class="p">:</span>
+            <span class="n">c</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">file2</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">docente_input</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot; ha &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">c</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; ore di lezione.&quot;</span><span class="p">)</span>
+    <span class="n">file2</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Controlla il file&quot;</span><span class="p">,</span> <span class="n">nomefile</span><span class="p">)</span>
+    <span class="k">return</span></div>
+
+
+<div class="viewcode-block" id="f3">
+<a class="viewcode-back" href="../../funzioni.html#funzioni.modulo.f3">[documenti]</a>
+<span class="k">def</span> <span class="nf">f3</span><span class="p">(</span><span class="n">docenti</span><span class="p">,</span> <span class="n">orari</span><span class="p">,</span> <span class="n">docente_input</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Cerca il numero di ore D di un determinato docente dato dall&#39;utente.</span>
+<span class="sd">   </span>
+<span class="sd">    parametri (docenti, orari, docente_input):</span>
+<span class="sd">       </span>
+<span class="sd">        docenti: lista di tutti i nomi dei docenti nell&#39;istituto.</span>
+<span class="sd">       </span>
+<span class="sd">        orari : lista di tutti gli orari dei docenti nell&#39;istituto.</span>
+<span class="sd">       </span>
+<span class="sd">        docente_input: variabile che contiene il cognome e nome del docente da cercare.</span>
+<span class="sd">       </span>
+<span class="sd">    Ritorna ():</span>
+<span class="sd">   </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nomefile</span> <span class="o">=</span> <span class="s2">&quot;disposizione &quot;</span> <span class="o">+</span> <span class="n">docente_input</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">+</span><span class="s2">&quot;.txt&quot;</span>
+    <span class="n">file3</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">nomefile</span><span class="p">,</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+    <span class="n">file3</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">file3</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">nomefile</span><span class="p">,</span><span class="s2">&quot;w&quot;</span><span class="p">)</span>
+    <span class="n">file3</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Ore a disposizioni di &quot;</span><span class="o">+</span> <span class="n">docente_input</span> <span class="o">+</span> <span class="s2">&quot;:</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">dizionario</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">docenti</span><span class="p">)):</span>
+        <span class="n">dizionario</span><span class="p">[</span><span class="n">docenti</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">orari</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">ora</span> <span class="ow">in</span> <span class="n">dizionario</span><span class="p">[</span><span class="n">docente_input</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">ora</span> <span class="o">==</span> <span class="s2">&quot; D &quot;</span><span class="p">:</span>
+            <span class="n">c</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">file3</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">docente_input</span> <span class="o">+</span> <span class="s2">&quot; ha &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; ore in cui è a disposizione.&quot;</span><span class="p">)</span>
+    <span class="n">file3</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Controlla il file&quot;</span><span class="p">,</span> <span class="n">nomefile</span><span class="p">)</span>
+    <span class="k">return</span></div>
+
+
+<div class="viewcode-block" id="f4">
+<a class="viewcode-back" href="../../funzioni.html#funzioni.modulo.f4">[documenti]</a>
+<span class="k">def</span> <span class="nf">f4</span><span class="p">(</span><span class="n">ora_input</span><span class="p">,</span> <span class="n">giorno_input</span> <span class="p">,</span> <span class="n">orari</span><span class="p">,</span> <span class="n">docenti</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Cerca il docente di un determinato giorno a una determinata ora date dall&#39;utente.</span>
+<span class="sd">   </span>
+<span class="sd">    Parametri (ora_input, giorno_input , orari, docenti):</span>
+<span class="sd">       </span>
+<span class="sd">        ora_input: variabile che contiene l&#39;ora della giornata da cercare.</span>
+<span class="sd">       </span>
+<span class="sd">        giorno_input: variabile che contiene il giorno dato dall&#39;utente.</span>
+<span class="sd">     </span>
+<span class="sd">        orari : lista di tutti gli orari dei docenti nell&#39;istituto.</span>
+<span class="sd">        </span>
+<span class="sd">        docenti: lista di tutti i nomi dei docenti nell&#39;istituto.</span>
+<span class="sd">   </span>
+<span class="sd">    Ritorna ():</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nomefile</span> <span class="o">=</span> <span class="s2">&quot;elencodocentilezione.txt&quot;</span>
+    <span class="n">file4</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">nomefile</span><span class="p">,</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+    <span class="n">file4</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">file4</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">nomefile</span><span class="p">,</span><span class="s2">&quot;w&quot;</span><span class="p">)</span>
+    <span class="n">file4</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Elenco dei docenti che hanno lezione il &quot;</span><span class="o">+</span> <span class="n">giorno_input</span> <span class="o">+</span> <span class="s2">&quot; alla &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ora_input</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;° ora.</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>    
+    <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">dizionario</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">giorni</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;LUN&quot;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span><span class="s2">&quot;MAR&quot;</span> <span class="p">:</span> <span class="mi">8</span><span class="p">,</span><span class="s2">&quot;MER&quot;</span> <span class="p">:</span> <span class="mi">16</span><span class="p">,</span><span class="s2">&quot;GIO&quot;</span> <span class="p">:</span> <span class="mi">24</span><span class="p">,</span><span class="s2">&quot;VEN&quot;</span> <span class="p">:</span> <span class="mi">32</span><span class="p">}</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">docenti</span><span class="p">)):</span>
+        <span class="n">dizionario</span><span class="p">[</span><span class="n">docenti</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">orari</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">docente</span> <span class="ow">in</span> <span class="n">dizionario</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">dizionario</span><span class="p">[</span><span class="n">docente</span><span class="p">][(</span><span class="n">ora_input</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">giorni</span><span class="p">[</span><span class="n">giorno_input</span><span class="p">])]</span> <span class="o">!=</span> <span class="s2">&quot;   &quot;</span><span class="p">:</span>
+            <span class="n">file4</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">docente</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">c</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">file4</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Il &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">giorno_input</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; alla &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ora_input</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; ° ora &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">+</span><span class="s2">&quot; docenti hanno lezione.&quot;</span><span class="p">)</span>
+    <span class="n">file4</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Controlla il file&quot;</span><span class="p">,</span> <span class="n">nomefile</span><span class="p">)</span>    
+    <span class="k">return</span></div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">Progetto Orario</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigazione</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Codice del modulo</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Ricerca veloce</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Vai" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Costantini Pedrollo.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
